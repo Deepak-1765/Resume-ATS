@@ -41,14 +41,8 @@ SKILL_DB = [
 
 def extract_entities(text: str):
     emails = re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', text)
-    phones = re.findall(
-    r'(?:\+91[-\s]?)?[6-9]\d{9}',
-    text
-)
-   found_skills = [
-    skill for skill in SKILL_DB
-    if re.search(r'\b' + re.escape(skill) + r'\b', text.lower())
-]
+    phones = re.findall(r'\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}', text)
+    found_skills = [skill for skill in SKILL_DB if skill in text.lower()]
     return {
         "email": emails[0] if emails else "Not Found",
         "phone": phones[0] if phones else "Not Found",
@@ -153,11 +147,6 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     uvicorn.run(app, host="0.0.0.0", port=port)
 # ==========================================
-
-# ==========================================================
-# Developer Information
-# ==========================================================
-
 developer_info = """
 ---
 ## 👨‍💻 About the Developer
@@ -172,4 +161,5 @@ https://github.com/Deepak-1765
 
 ---
 """
----
+
+
