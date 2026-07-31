@@ -41,8 +41,14 @@ SKILL_DB = [
 
 def extract_entities(text: str):
     emails = re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', text)
-    phones = re.findall(r'\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}', text)
-    found_skills = [skill for skill in SKILL_DB if skill in text.lower()]
+    phones = re.findall(
+    r'(?:\+91[-\s]?)?[6-9]\d{9}',
+    text
+)
+   found_skills = [
+    skill for skill in SKILL_DB
+    if re.search(r'\b' + re.escape(skill) + r'\b', text.lower())
+]
     return {
         "email": emails[0] if emails else "Not Found",
         "phone": phones[0] if phones else "Not Found",
@@ -158,10 +164,12 @@ developer_info = """
 
 **Created by:** **Deepak Chahal**
 
-🔗 **LinkedIn:**  
+🔗 LinkedIn:
 https://www.linkedin.com/in/deepak-chahal-694073404
 
-💻 **GitHub:**  
+💻 GitHub:
 https://github.com/Deepak-1765
 
+---
+"""
 ---
