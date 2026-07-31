@@ -147,3 +147,21 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     uvicorn.run(app, host="0.0.0.0", port=port)
 # ==========================================
+
+# ==========================================================
+# Developer Information
+# ==========================================================
+
+developer_info = """
+---
+## 👨‍💻 About the Developer
+
+**Created by:** **Deepak Chahal**
+
+🔗 **LinkedIn:**  
+https://www.linkedin.com/in/deepak-chahal-694073404
+
+💻 **GitHub:**  
+https://github.com/Deepak-1765
+
+---
